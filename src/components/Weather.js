@@ -54,7 +54,7 @@ setTempInfo(myNewWeatherInfo)
 
 useEffect(()=>{
     getData();
-}, [])
+}, [getData])
 
   return (
     <>
