@@ -68,7 +68,7 @@ const Weather = () => {
 
   useEffect(()=>{
     getData();
-  });
+  },[getData]);
 
   return (
     <>
