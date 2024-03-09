@@ -1,6 +1,6 @@
 pipeline{
     environment{
-        registry = habhi/weatherApp
+        registry = "habhi/weather-app"
         DOCKER_CREDENTIALS = 'Docker_ID'
         dockerImage = ''
         K8S_CREDENTIALS = 'kubeconfig'
