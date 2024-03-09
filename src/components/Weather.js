@@ -26,7 +26,7 @@ import './style.css'
    }
     }, [tempInfo.cloudMood])
 
-  const getData = async()=>{
+  const getData = useCallback(async()=>{
   try {
    const url = `https://api.openweathermap.org/data/2.5/weather?q=${uInVal}&units=metric&appid=7deb5d5ef513acbd22dfbbe0bbc92e65`;
     const res = await fetch(url);
@@ -50,7 +50,7 @@ setTempInfo(myNewWeatherInfo)
 
   } catch (error) {
     alert(error)
-  }}
+  }},  [uInVal]);
 
 useEffect(()=>{
     getData();
