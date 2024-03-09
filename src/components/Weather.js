@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import './style.css'
+import React, { useEffect, useState } from 'react';
+import './style.css';
 
 const Weather = () => {
-  const [weatherState, setWeatherState] = useState("wi-day-sunny")
-  const [uInVal, setuInVal] = useState("kanepokhari")
+  const [weatherState, setWeatherState] = useState("wi-day-sunny");
+  const [uInVal, setuInVal] = useState("kanepokhari");
   const [tempInfo, setTempInfo] = useState("");
   let sec = tempInfo.sunset;
   let date = new Date(sec * 1000);
@@ -20,11 +20,11 @@ const Weather = () => {
       case "Clear":
         setWeatherState("wi-day-sunny");
         break;
-
-      default: setWeatherState("wi-day-sunny");
+      default:
+        setWeatherState("wi-day-sunny");
         break;
     }
-  }, [tempInfo.cloudMood])
+  }, [tempInfo.cloudMood]);
 
   const getData = async () => {
     try {
@@ -46,16 +46,25 @@ const Weather = () => {
         country,
         sunset
       };
-      setTempInfo(myNewWeatherInfo)
-
+      setTempInfo(myNewWeatherInfo);
     } catch (error) {
-      alert(error)
+      alert(error);
     }
-  }
+  };
 
-  useEffect(() => {
+  const handleInputChange = (e) => {
+    setuInVal(e.target.value);
+  };
+
+  const handleSubmit = () => {
     getData();
-  });
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      getData();
+    }
+  };
 
   return (
     <>
@@ -68,14 +77,16 @@ const Weather = () => {
             id='search'
             className='searchTerm'
             value={uInVal}
-            onChange={(e) => { setuInVal(e.target.value) }}
+            onChange={handleInputChange}
+            onKeyPress={handleKeyPress}
             style={{ marginTop: '15px' }}
           />
           <button
             className='searchButton'
             type='button'
             style={{ marginTop: '15px' }}
-            onClick={getData}>
+            onClick={handleSubmit}
+          >
             Submit
           </button>
         </div>
@@ -89,13 +100,11 @@ const Weather = () => {
         </div>
 
         <div className='weatherInfo'>
-          <div className='tempreature'
-            style={{ marginLeft: '17px', fontSize: '20px' }}>
+          <div className='tempreature' style={{ marginLeft: '17px', fontSize: '20px' }}>
             <span>{tempInfo.temp} &deg;</span>
           </div>
 
-          <div className='description '
-            style={{ marginLeft: '20px' }}>
+          <div className='description ' style={{ marginLeft: '20px' }}>
             <div className='weatherCondition'>{tempInfo.cloudMood}</div>
             <div className='place'>
               {tempInfo.name}, {tempInfo.country}
@@ -141,7 +150,7 @@ const Weather = () => {
         </div>
       </article>
     </>
-  )
-}
+  );
+};
 
-export default Weather
+export default Weather;
