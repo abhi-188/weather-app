@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 
 const Weather = () => {
@@ -153,4 +153,4 @@ const Weather = () => {
   );
 };
 
-export default Weather;
+export default Weather
