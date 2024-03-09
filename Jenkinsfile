@@ -1,6 +1,6 @@
 pipeline{
     environment{
-        registry = habhi/weather-app
+        registry = habhi/weatherApp
         DOCKER_CREDENTIALS = 'Docker_ID'
         dockerImage = ''
         K8S_CREDENTIALS = 'kubeconfig'
@@ -18,7 +18,7 @@ pipeline{
 
         stage('CREATING DOCKER IMAGE'){
             steps{
-                scripts{
+                script{
                     dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
@@ -26,7 +26,7 @@ pipeline{
 
         stage('DEPLOYING IMAGE IN DOCKERHUB'){
             steps{
-                scripts{
+                script{
                     docker.withRegistry('',DOCKER_CREDENTIALS){
                         dockerImage.push()
                     }
