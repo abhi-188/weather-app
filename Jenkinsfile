@@ -1,6 +1,8 @@
 pipeline{
     environment{
-
+        DOCKER_CREDENTIALS = 'Docker_ID'
+        dockerImage = ''
+        K8S_CREDENTIALS = 'kubeconfig'
     }
 
     agent any
