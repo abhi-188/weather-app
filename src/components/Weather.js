@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import './style.css'
 
 const Weather = () => {
@@ -26,16 +26,11 @@ const Weather = () => {
     }
   }, [tempInfo.cloudMood])
 
-  const getData = useCallback(async () => {
+  const getData = async () => {
     try {
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${uInVal}&units=metric&appid=7deb5d5ef513acbd22dfbbe0bbc92e65`;
       const res = await fetch(url);
       const mainData = await res.json();
-
-      if (!mainData || !mainData.main) {
-        throw new Error('Failed to fetch weather data');
-      }
-
       const { temp, humidity, pressure } = mainData.main;
       const { main: cloudMood } = mainData.weather[0];
       const { name } = mainData;
@@ -54,13 +49,13 @@ const Weather = () => {
       setTempInfo(myNewWeatherInfo)
 
     } catch (error) {
-      alert(error.message || "Failed to fetch weather data")
+      alert(error)
     }
-  }, [uInVal]);
+  }
 
   useEffect(() => {
     getData();
-  }, [getData])
+  });
 
   return (
     <>
