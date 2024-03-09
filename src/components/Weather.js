@@ -50,11 +50,11 @@ setTempInfo(myNewWeatherInfo)
 
   } catch (error) {
     alert(error)
-  }},  [uInVal]);
+  }},  );
 
 useEffect(()=>{
     getData();
-}, [getData])
+},)
 
   return (
     <>
