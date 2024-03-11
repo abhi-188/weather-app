@@ -1,0 +1,4 @@
+apiVersion: v2
+name: weathe-app
+description: A Helm chart fror deploying a React app
+version: 0.1.0

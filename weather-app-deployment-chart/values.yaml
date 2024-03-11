@@ -1,0 +1,13 @@
+# Define values here to customize your deployment
+replicaCount: 2
+image:
+  repository: habhi/weather-app
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 80
+  name: weather-app-service
+deployment:
+  name: weather-app-deployment
+  
