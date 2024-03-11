@@ -40,7 +40,7 @@ pipeline{
         stage('RUNNING IMAGE IN K8S'){
             steps{
                 withKubeConfig(
-                    credentialId: K8S_CREDENTIALS,
+                    credentialsId: K8S_CREDENTIALS,
                     caCertificate: '',
                     clusterName: 'minikube',
                     namespace: 'default',
