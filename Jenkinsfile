@@ -49,7 +49,7 @@ pipeline{
                     script{
                         
                         def helmListOutput = sh(script: 'helm list -q',returnStdOut: true).trim()
-                        if(helmListOutput.contains('')){
+                        if(helmListOutput.contains(releaseName)){
                             sh "helm upgrade $releaseName $chartPath"
                         }
                         else{
