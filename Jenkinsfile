@@ -48,7 +48,7 @@ pipeline{
                 ){
                     script{
                         
-                        def helmListOutput = sh(script: 'helm list -q',returnStdOut: true).trim()
+                        def helmListOutput = sh(script: 'helm list -q',returnStdOut: true)
                         if(helmListOutput.contains(releaseName)){
                             sh "helm upgrade $releaseName $chartPath"
                         }
