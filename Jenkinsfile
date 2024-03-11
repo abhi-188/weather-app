@@ -5,7 +5,7 @@ pipeline{
         dockerImage = ''
         K8S_CREDENTIALS = 'kubeconfig'
         releaseName = 'weather-app'
-        chartPath = './weather-app-deployment-chart'
+        chartPath = 'weather-app-deployment-chart/'
     }
 
     agent any
@@ -47,8 +47,7 @@ pipeline{
                     serverUrl: ''
                 ){
                     script{
-                        
-                        def helmListOutput = sh(script: 'helm list -q',returnStdOut: true)
+                        def helmListOutput = sh(script: 'helm list -q',returnStdout: true).trim()
                         if(helmListOutput.contains(releaseName)){
                             sh "helm upgrade $releaseName $chartPath"
                         }
